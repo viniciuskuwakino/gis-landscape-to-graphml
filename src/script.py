@@ -1,6 +1,10 @@
 import csv
 from csv import DictReader
 
+data_file_path = './data/SoilUse_1.csv'
+data_coords_file_path = './data/coords.csv'
+output_graphml_file = './output/mainSoilUse.graphml'
+output_csv_file = './output/mainSoilUse.csv'
 
 def sem_repeticao(value, solos_dict):
     for i in solos_dict:
@@ -15,7 +19,7 @@ def sem_repeticao(value, solos_dict):
 def filtrar_repetidos():
     solos_dict = dict()
 
-    with open('SoilUse_1.csv', encoding='utf8') as csv_file:
+    with open(data_file_path, encoding='utf8') as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
         for index, value in enumerate(csv_reader):
@@ -68,7 +72,7 @@ def unificar_dicionarios(dicionario_principal, dicionario_fid_last, dicionario_s
 
 
 def converter_csv():
-    with open('mainSoilUse.csv', mode='w', newline='', encoding='utf8') as file:
+    with open(output_csv_file, mode='w', newline='', encoding='utf8') as file:
         new_file = csv.DictWriter(file, fieldnames=dicionario_principal[0].keys())
         new_file.writeheader()
 
@@ -115,7 +119,7 @@ def gerar_graphml():
 
     # Adiciona dados das coordenadas de cada nó
     def add_coords():
-        with open('coords.csv', encoding='utf8', mode='r') as csv_file:
+        with open(data_coords_file_path, encoding='utf8', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
 
             for i in csv_reader:
@@ -249,9 +253,7 @@ def gerar_graphml():
 </edge>
 '''
 
-    graphml_file = 'mainSoilUse.graphml'
-
-    with open(graphml_file, 'w') as file:
+    with open(output_graphml_file, 'w') as file:
 
         # Escreva o cabeçalho do arquivo GraphML
         file.write('''<?xml version="1.0" encoding="UTF-8"?>\n<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">''')

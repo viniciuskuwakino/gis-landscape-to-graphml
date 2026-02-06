@@ -18,9 +18,11 @@ Unlike traditional raster-based models, this approach focuses on functional conn
 
 ## 📁 Repository Structure
 
-* /src: Python scripts implementing the three pipeline stages: Cleaning, Structuring, and Generation.
+* /src: Python scripts implementing the three pipeline stages: Cleaning, Structuring, and Generation. And the `algorithms.py` to run on Gephi terminal and execute Graph Algorithms.
 
-* /data/sample: Sample input datasets in CSV format (patches and boundaries).
+* /notebooks: A Python notebook that documents, step by step, the procedures executed by `script.py`.
+
+* /data: Sample input datasets in CSV format (patches and boundaries).
 
 * /output: Example generated GraphML files, compatible with network analysis software such as Gephi.
 
